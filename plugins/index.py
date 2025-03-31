@@ -174,14 +174,28 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                 if not media:
                     unsupported += 1
                     continue
-                media.caption = message.caption
-                aynav, vnay = await save_file(media)
-                if aynav:
-                    total_files += 1
-                elif vnay == 0:
-                    duplicate += 1
-                elif vnay == 2:
-                    errors += 1
+    
+                # Check if the media is a document and if it has an APK, ZIP or RAR extension
+                if message.media == enums.MessageMediaType.DOCUMENT:
+                # Define the MIME types for APK, ZIP, and RAR
+                    mime_types = {
+                        'application/vnd.android.package-archive': 'apk',
+                        'application/zip': 'zip',
+                        'application/x-rar-compressed': 'rar',
+                        'application/octet-stream': 'rar'  # This may cover some rar files as well
+                    }
+
+                if media.mime_type in mime_types:
+                    media.caption = message.caption
+                    aynav, vnay = await save_file(media)
+                    if aynav:
+                        total_files += 1
+                    elif vnay == 0:
+                        duplicate += 1
+                    elif vnay == 2:
+                        errors += 1
+                else:
+                    unsupported += 1
         except Exception as e:
             logger.exception(e)
             k = await msg.edit(f'Error: {e}')
