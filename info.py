@@ -126,8 +126,8 @@ VERIFY_SND_SHORTLINK_API = environ.get('VERIFY_SND_SHORTLINK_API', '')
 
 # Shortlink Info
 SHORTLINK_MODE = bool(environ.get('SHORTLINK_MODE', True)) # Set True Or False
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'adrinolinks.in')
-SHORTLINK_API = environ.get('SHORTLINK_API', '029804daf7acb04161d73384905dbb4664d8728c')
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'sharedisklinks.com')
+SHORTLINK_API = environ.get('SHORTLINK_API', '33d3238d4b28af86ab0d3d6846e78e2d63a075c1')
 TUTORIAL = environ.get('TUTORIAL', 'https://t.me/moviesimplyfytuber/28') # How Open Shortner Link Video Link , Channel Link Where You Upload Your Video.
 
 
